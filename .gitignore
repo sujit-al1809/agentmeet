@@ -15,6 +15,10 @@ backend/venv/
 *.env
 !.env.example
 
+# Local SQLite databases (regenerated via `alembic upgrade head`)
+*.db
+*.sqlite3
+
 # Uploaded audio files
 uploads/
 
