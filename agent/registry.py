@@ -1,8 +1,8 @@
 # agent/registry.py
 import json
-from tools import search, calendar, email   # your pure tool functions
+from agentmeet.tools import meeting_search
+from tools import calendar, email   # your pure tool functions
 
-# --- what the model SEES ---
 TOOL_SCHEMAS = [
     {
         "name": "search_meetings",
@@ -34,9 +34,8 @@ TOOL_SCHEMAS = [
     },
 ]
 
-# --- what actually RUNS (name -> python fn) ---
 TOOL_FUNCTIONS = {
-    "search_meetings":       lambda **kw: search.search(kw["query"]),
+    "search_meetings":       lambda **kw: meeting_search.search(kw["query"]),
     "schedule_action_items": lambda **kw: calendar.schedule_all(kw["meeting_id"]),
     "draft_email":           lambda **kw: email.generate_for(kw["meeting_id"]),
 }
